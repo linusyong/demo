@@ -1,10 +1,10 @@
 ---
   - name: create security group
     ec2_group:
-      name: rancher-server-sg
+      name: "{{ project_name }}-{{ env }}--server-sg"
       description: Security Group for Rancher Server
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
+      aws_access_key: "{{ ec2_access_key }}"
+      aws_secret_key: "{{ ec2_secret_key }}"
       region: "{{ region }}"
       rules:
         - proto: tcp
@@ -13,3 +13,9 @@
             - 8080
           cidr_ip: 0.0.0.0/0
           rule_desc: allow ssh/22 and http/8080 from anywhere
+    register: security_group
+
+  - name: store security group created information
+    copy:
+      content: "---{{ '\n' }}rancher_server_security_group_id: {{ security_group.group_id }}"
+      dest: group_vars/all/vars_security_group_created.yml
