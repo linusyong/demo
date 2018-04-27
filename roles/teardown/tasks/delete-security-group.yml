@@ -8,6 +8,7 @@
       state: absent
 
   - name: remove stored security group information
-    file:
-      path: group_vars/all/vars_security_group_created.yml
+    lineinfile:
+      path: roles/teardown/vars/main.yml
+      regexp: '^rancher_server_security_group_id:.*'
       state: absent
