@@ -1,14 +1,14 @@
 ---
-  - name: delete security group
-    ec2_group:
-      aws_access_key: "{{ ec2_access_key }}"
-      aws_secret_key: "{{ ec2_secret_key }}"
-      region: "{{ region }}"
-      group_id: "{{ rancher_server_security_group_id }}"
-      state: absent
+- name: delete security group
+  ec2_group:
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    region: "{{ region }}"
+    group_id: "{{ rancher_server_security_group_id }}"
+    state: absent
 
-  - name: remove stored security group information
-    lineinfile:
-      path: roles/teardown/vars/main.yml
-      regexp: '^rancher_server_security_group_id:.*'
-      state: absent
+- name: remove stored security group information
+  lineinfile:
+    path: roles/teardown/vars/main.yml
+    regexp: '^rancher_server_security_group_id:.*'
+    state: absent
