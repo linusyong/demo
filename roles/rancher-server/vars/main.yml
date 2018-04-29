@@ -1,3 +1,4 @@
 ---
+instance_name: rancher-server
 instance_type: t2.micro
-image: ami-d38a4ab1
+ami: ami-d38a4ab1

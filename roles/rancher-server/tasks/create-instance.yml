@@ -1,0 +1,23 @@
+---
+- name: create ec2 instance
+  ec2:
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    region: "{{ region }}"
+    key_name: "{{ project_name }}-{{ env }}-key"
+    groups:
+      - "{{ project_name }}-{{ env }}-server-sg"
+    instance_type: "{{ instance_type }}"
+    image: "{{ ami }}"
+    wait: yes
+    wait_timeout: 300
+    volumes:
+      - device_name: /dev/xvda
+        volume_type: gp2
+        volume_size: 30
+    instance_tags:
+      Name: "{{ instance_name }}"
+      project: "{{ project_name }}"
+      env: "{{ env }}"
+    count_tag: env
+    exact_count: 1
