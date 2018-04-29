@@ -18,5 +18,5 @@
 - name: store security group created information
   lineinfile:
     path: roles/teardown/vars/main.yml
-    regexp: '^rancher_server_security_group_id::.*'
+    regexp: '^rancher_server_security_group_id:.*'
     line: "rancher_server_security_group_id: {{ security_group.group_id }}"
