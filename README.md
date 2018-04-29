@@ -12,7 +12,7 @@ The teardown is also automated to ensure that resources created in AWS is remove
 Put your credentials in group_vars/all/vars_aws_credentials.yml as in the following:
 
 ```
---
+---
 ec2_access_key: "AWS_ACCESS_KEY"
 ec2_secret_key: "AWS_SECRET_KEY"
 ```
