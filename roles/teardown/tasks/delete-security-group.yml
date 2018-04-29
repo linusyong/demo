@@ -1,4 +1,9 @@
 ---
+- name: check security group information availability
+  slurp:
+    src: roles/teardown/vars/main.yml
+  register: teardown_vars
+
 - name: delete security group
   ec2_group:
     aws_access_key: "{{ ec2_access_key }}"
@@ -6,9 +11,11 @@
     region: "{{ region }}"
     group_id: "{{ rancher_server_security_group_id }}"
     state: absent
+  when:  teardown_vars.content | b64decode is search("rancher_server_security_group_id:")
 
 - name: remove stored security group information
   lineinfile:
     path: roles/teardown/vars/main.yml
     regexp: '^rancher_server_security_group_id:.*'
     state: absent
+  when:  teardown_vars.content | b64decode is search("rancher_server_security_group_id:")
