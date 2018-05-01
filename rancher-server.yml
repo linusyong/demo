@@ -2,5 +2,10 @@
 - hosts: localhost
   connection: local
   gather_facts: false
-  roles:
-    - rancher-server
+  tasks:
+    - include_role:
+        name: aws-instance
+      vars:
+        instance_name: rancher-server
+        instance_type: t2.micro
+        ami: ami-d38a4ab1

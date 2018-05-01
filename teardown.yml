@@ -2,5 +2,6 @@
 - hosts: localhost
   connection: local
   gather_facts: false
-  roles:
-    - teardown
+  tasks:
+    - include_role:
+        name: teardown
