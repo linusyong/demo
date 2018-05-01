@@ -7,6 +7,7 @@
     filters:
       "tag:project": "{{ project_name }}"
       "tag:env": "{{ env }}"
+      "instance-state-code": "16"
   register: ec2_instances
 
 - name: terminate ec2 instance
@@ -19,3 +20,9 @@
     wait: true
   with_items: "{{ ec2_instances.instances }}"
 
+- name: remove the instance from ansible hosts file
+  lineinfile:
+    path: hosts
+    regexp: "{{ item.public_ip_address }}"
+    state: absent
+  with_items: "{{ ec2_instances.instances }}"

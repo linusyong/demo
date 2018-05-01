@@ -4,8 +4,16 @@
   gather_facts: false
   tasks:
     - include_role:
-        name: aws-instance
+        name: aws-ec2-instance
       vars:
         instance_name: rancher-server
         instance_type: t2.micro
         ami: ami-d38a4ab1
+    - meta: refresh_inventory
+
+- hosts: ec2_hosts
+  vars:
+    ansible_ssh_private_key_file: "roles/rancher-server/files/{{ project_name}}-{{ env }}-private.pem"
+  tasks:
+    - include_role:
+        name: users

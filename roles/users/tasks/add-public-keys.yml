@@ -1,0 +1,7 @@
+---
+- name: add public keys
+  authorized_key:
+    user: ubuntu
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - "public_keys/{{ env }}/*.pub"

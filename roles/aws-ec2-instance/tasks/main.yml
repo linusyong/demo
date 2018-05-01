@@ -2,4 +2,3 @@
   - include_tasks: create-security-group.yml
   - include_tasks: create-key-pairs.yml
   - include_tasks: create-ec2-instance.yml
-#  - include_tasks: delete-key-pairs.yml

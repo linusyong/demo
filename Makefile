@@ -7,4 +7,4 @@ teardown:
 	ansible-playbook --vault-id @prompt teardown.yml
 
 clean:
-	@rm -rf *retry
+	@rm -rf *retry *log
