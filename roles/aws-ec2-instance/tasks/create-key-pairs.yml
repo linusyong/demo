@@ -10,6 +10,6 @@
 - name: save private key
   copy:
     content: "{{ ec2_key.key.private_key }}"
-    dest: "roles/aws-instance/files/{{ project_name}}-{{ env }}-private.pem"
+    dest: "roles/{{ role_name }}/files/{{ project_name}}-{{ env }}-private.pem"
     mode: 0600
   when: ec2_key.changed
