@@ -17,3 +17,9 @@
   tasks:
     - include_role:
         name: users
+
+- hosts: ec2_hosts
+  become: true
+  tasks:
+    - include_role:
+        name: docker
