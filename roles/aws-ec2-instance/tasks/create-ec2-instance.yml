@@ -44,6 +44,20 @@
   changed_when: installation.stdout != ""
   delegate_to: ec2_host
 
+- name: generate locale for en_AU
+  locale_gen:
+    name: en_AU.UTF-8
+    state: present
+  delegate_to: ec2_host
+  become: true
+
+- name: perform distribution upgrade
+  apt:
+    upgrade: dist
+    update_cache: true
+  delegate_to: ec2_host
+  become: true
+
 - name: add ip to ec2_hosts group
   lineinfile:
     dest: hosts

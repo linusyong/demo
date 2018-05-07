@@ -1,9 +1,4 @@
 ---
-- name: generate locale for en_AU
-  locale_gen:
-    name: en_AU.UTF-8
-    state: present
-
 - name: add docker apt key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
