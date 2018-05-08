@@ -1,0 +1,8 @@
+---
+- name: run rancher-server container
+  docker_container:
+    name: rancher-server
+    image: rancher/server
+    published_ports:
+      - 8080:8080
+    restart_policy: unless-stopped

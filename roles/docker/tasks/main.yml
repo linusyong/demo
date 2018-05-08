@@ -14,3 +14,11 @@
   apt:
     name: docker-ce
     update_cache: true
+
+- name: install pip
+  apt:
+    name: python-pip
+
+- name: install docker-py
+  pip:
+    name: docker-py

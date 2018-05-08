@@ -23,3 +23,5 @@
   tasks:
     - include_role:
         name: docker
+    - include_role:
+        name: rancher-server
